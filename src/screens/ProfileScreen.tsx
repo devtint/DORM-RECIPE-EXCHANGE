@@ -202,17 +202,17 @@ export default function ProfileScreen({
 
         </div>
 
-        {/* ── Edit Profile Modal Sheet ────────────────────────────────────────────── */}
+        {/* ── Centered Edit Profile Modal Card ────────────────────────────────────────────── */}
         {isEditing && (
-          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-end justify-center anim-fade-in">
+          <div className="fixed inset-0 bg-black/65 backdrop-blur-sm z-[100] flex items-center justify-center p-4 anim-fade-in">
             <div
-              className="w-full max-w-lg bg-[#FDF8F2] rounded-t-3xl p-5 shadow-2xl anim-slide-up max-h-[85vh] flex flex-col"
-              style={{ borderTop: "1px solid #EDE6DE" }}
+              className="w-full max-w-md bg-[#FDF8F2] rounded-3xl p-5 shadow-2xl anim-scale-in max-h-[85vh] flex flex-col relative"
+              style={{ border: "1px solid #EDE6DE", boxShadow: "0 20px 50px rgba(0,0,0,0.3)" }}
             >
               {/* Header with Title + Top Save Button + Close */}
               <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#EDE6DE] flex-shrink-0">
                 <h3 className="text-base font-bold" style={{ fontFamily: "Fraunces, serif", color: "#2A1F14" }}>
-                  Edit Profile
+                  Edit Student Profile
                 </h3>
                 <div className="flex items-center gap-2">
                   <button
@@ -235,7 +235,7 @@ export default function ProfileScreen({
 
               {/* Form Content */}
               <form onSubmit={handleSaveProfile} className="flex-1 flex flex-col min-h-0">
-                <div className="flex-1 overflow-y-auto space-y-4 pr-1 pb-4 min-h-0">
+                <div className="flex-1 overflow-y-auto space-y-4 pr-1 pb-3 min-h-0">
 
                   {/* Avatar Picker */}
                   <div>
