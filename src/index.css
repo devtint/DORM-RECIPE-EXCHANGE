@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Nunito:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --color-background: #FDF8F2;
+  --color-card: #FFFFFF;
+  --color-primary: #D95F2B;
+  --color-primary-foreground: #FFFFFF;
+  --color-accent-gold: #F5A31A;
+  --color-accent-blue: #4A8FE0;
+  --color-muted: #F0EAE1;
+  --color-muted-foreground: #8A7A6A;
+  --color-foreground: #2A1F14;
+  --color-border: #E5DDD4;
+  --radius: 14px;
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Nunito', sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: #FDF8F2;
+  color: #2A1F14;
+  margin: 0;
+  padding: 0;
+}
+
+input:focus {
+  outline: none;
+}
+
+/* Hide scrollbars but keep scrolling */
+::-webkit-scrollbar { display: none; }
+* { scrollbar-width: none; }
+
+/* ── Keyframes ──────────────────────────────────────────────────────────── */
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-down {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.35); }
+  70%  { transform: scale(0.88); }
+  100% { transform: scale(1); }
+}
+
+@keyframes slide-up-sheet {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes pulse-ring {
+  0%   { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(217,95,43,0.4); }
+  70%  { transform: scale(1);    box-shadow: 0 0 0 10px rgba(217,95,43,0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0  rgba(217,95,43,0); }
+}
+
+@keyframes count-up {
+  from { transform: translateY(6px); opacity: 0; }
+  to   { transform: translateY(0);   opacity: 1; }
+}
+
+/* ── Animation utility classes ──────────────────────────────────────────── */
+
+.anim-fade-in       { animation: fade-in       0.3s ease both; }
+.anim-fade-up       { animation: fade-up       0.4s cubic-bezier(0.22,1,0.36,1) both; }
+.anim-fade-down     { animation: fade-down     0.3s ease both; }
+.anim-slide-right   { animation: slide-in-right 0.35s cubic-bezier(0.22,1,0.36,1) both; }
+.anim-scale-in      { animation: scale-in      0.28s cubic-bezier(0.22,1,0.36,1) both; }
+.anim-float         { animation: float         3s ease-in-out infinite; }
+.anim-pulse-ring    { animation: pulse-ring    2s ease-in-out infinite; }
+
+/* Stagger helpers — add delay via --delay CSS var or inline style */
+.anim-stagger > * { animation: fade-up 0.4s cubic-bezier(0.22,1,0.36,1) both; }
+.anim-stagger > *:nth-child(1) { animation-delay: 0ms; }
+.anim-stagger > *:nth-child(2) { animation-delay: 60ms; }
+.anim-stagger > *:nth-child(3) { animation-delay: 120ms; }
+.anim-stagger > *:nth-child(4) { animation-delay: 180ms; }
+.anim-stagger > *:nth-child(5) { animation-delay: 240ms; }
+.anim-stagger > *:nth-child(6) { animation-delay: 300ms; }
+.anim-stagger > *:nth-child(7) { animation-delay: 360ms; }
+.anim-stagger > *:nth-child(8) { animation-delay: 420ms; }
+
+/* Bookmark pop — toggled via JS by adding this class */
+.bookmark-pop { animation: pop 0.35s cubic-bezier(0.22,1,0.36,1) both; }

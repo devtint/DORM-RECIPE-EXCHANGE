@@ -1,0 +1,11 @@
+# Vercel Deployment Exclusions (Keeps build bundle fast)
+.figma
+.git
+.gemini
+tmp
+scratch
+*.docx
+*.pdf
+plans
+AGENTS.md
+CLAUDE.md

@@ -1,0 +1,40 @@
+# Tooling & Agent Metadata (Ignored by Git)
+.figma
+.mise.toml
+.gitattributes
+AGENTS.md
+CLAUDE.md
+READMEFORAI.md
+plans
+
+# Dependencies
+node_modules
+.pnpm-store
+
+# Build outputs
+dist
+dist-ssr
+*.local
+
+# Environment variables & secrets (Safe defaults)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Editor & System files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Agent & Brain Scratch directories
+.gemini
+tmp
+scratch

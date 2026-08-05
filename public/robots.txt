@@ -1,0 +1,8 @@
+# Robots.txt for Dorm Recipe Exchange
+User-agent: *
+Allow: /
+Disallow: /api/private/
+Disallow: /admin/
+
+# Sitemap location
+Sitemap: https://dorm-recipe-exchange.vercel.app/sitemap.xml

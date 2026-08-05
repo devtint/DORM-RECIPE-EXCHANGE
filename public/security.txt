@@ -1,0 +1,5 @@
+Contact: https://t.me/BadCodeWriter
+Expires: 2027-12-31T23:59:59.000Z
+Preferred-Languages: en
+Canonical: https://dorm-recipe-exchange.vercel.app/security.txt
+Policy: Demo application for educational and academic project purposes only. No monetary bug bounty rewards.
