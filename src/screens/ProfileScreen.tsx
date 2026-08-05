@@ -97,7 +97,7 @@ export default function ProfileScreen({
                 setEditBio(userBio);
                 setIsEditing(true);
               }}
-              className="mt-4 px-4 py-1.5 rounded-full font-bold text-xs flex items-center gap-1.5 shadow-sm active:scale-95 transition-transform"
+              className="mt-4 px-4 py-1.5 rounded-full font-bold text-xs flex items-center gap-1.5 shadow-sm active:scale-95 transition-transform cursor-pointer"
               style={{ background: "#2A1F14", color: "#FDF8F2" }}
             >
               <span>✏️</span> Edit Profile
@@ -157,7 +157,7 @@ export default function ProfileScreen({
               <button
                 key={item.key}
                 onClick={() => handleMenu(item.key)}
-                className="w-full flex items-center justify-between p-3.5 rounded-2xl transition-all active:scale-[0.98] text-left"
+                className="w-full flex items-center justify-between p-3.5 rounded-2xl transition-all active:scale-[0.98] text-left cursor-pointer"
                 style={{
                   background: "#fff",
                   border: "1px solid #EDE6DE",
@@ -193,7 +193,7 @@ export default function ProfileScreen({
             {/* Logout button */}
             <button
               onClick={onLogout}
-              className="w-full mt-4 py-3.5 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 active:scale-[0.98] transition-transform"
+              className="w-full mt-4 py-3.5 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 active:scale-[0.98] transition-transform cursor-pointer"
               style={{ background: "#FFF0F0", border: "1px solid #FFD0D0", color: "#D93025" }}
             >
               <span>🚪</span> Log Out
@@ -204,90 +204,93 @@ export default function ProfileScreen({
 
         {/* ── Edit Profile Modal ────────────────────────────────────────────── */}
         {isEditing && (
-          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-end anim-fade-in">
+          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-end justify-center anim-fade-in">
             <div
-              className="w-full bg-[#FDF8F2] rounded-t-3xl p-6 shadow-2xl anim-slide-up max-h-[85vh] overflow-y-auto"
+              className="w-full max-w-lg bg-[#FDF8F2] rounded-t-3xl p-6 shadow-2xl anim-slide-up max-h-[90vh] flex flex-col"
               style={{ borderTop: "1px solid #EDE6DE" }}
             >
-              <div className="flex items-center justify-between mb-5">
+              <div className="flex items-center justify-between mb-4 flex-shrink-0">
                 <h3 className="text-lg font-bold" style={{ fontFamily: "Fraunces, serif", color: "#2A1F14" }}>
                   Edit Student Profile
                 </h3>
                 <button
                   onClick={() => setIsEditing(false)}
-                  className="w-8 h-8 rounded-full bg-black/5 flex items-center justify-center font-bold text-sm text-[#8A7A6A]"
+                  className="w-8 h-8 rounded-full bg-black/5 flex items-center justify-center font-bold text-sm text-[#8A7A6A] cursor-pointer"
                 >
                   ✕
                 </button>
               </div>
 
-              <form onSubmit={handleSaveProfile} className="space-y-4">
+              <form onSubmit={handleSaveProfile} className="flex-1 flex flex-col overflow-hidden">
+                <div className="flex-1 overflow-y-auto space-y-4 pr-1 pb-4">
 
-                {/* Avatar Picker */}
-                <div>
-                  <label className="block text-xs font-bold mb-2" style={{ color: "#2A1F14" }}>
-                    Choose Profile Avatar
-                  </label>
-                  <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-none">
-                    {AVATAR_OPTIONS.map((emoji) => (
-                      <button
-                        key={emoji}
-                        type="button"
-                        onClick={() => setEditAvatar(emoji)}
-                        className={`w-12 h-12 rounded-full flex-shrink-0 flex items-center justify-center text-2xl transition-all ${
-                          editAvatar === emoji ? "scale-110 shadow-md ring-2 ring-[#D95F2B]" : "opacity-70 bg-white"
-                        }`}
-                        style={{ background: editAvatar === emoji ? "#F2E4CF" : "#FFF" }}
-                      >
-                        {emoji}
-                      </button>
-                    ))}
+                  {/* Avatar Picker */}
+                  <div>
+                    <label className="block text-xs font-bold mb-2" style={{ color: "#2A1F14" }}>
+                      Choose Profile Avatar
+                    </label>
+                    <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-none">
+                      {AVATAR_OPTIONS.map((emoji) => (
+                        <button
+                          key={emoji}
+                          type="button"
+                          onClick={() => setEditAvatar(emoji)}
+                          className={`w-12 h-12 rounded-full flex-shrink-0 flex items-center justify-center text-2xl transition-all cursor-pointer ${
+                            editAvatar === emoji ? "scale-110 shadow-md ring-2 ring-[#D95F2B]" : "opacity-70 bg-white"
+                          }`}
+                          style={{ background: editAvatar === emoji ? "#F2E4CF" : "#FFF" }}
+                        >
+                          {emoji}
+                        </button>
+                      ))}
+                    </div>
                   </div>
+
+                  {/* Display Name Input */}
+                  <div>
+                    <label className="block text-xs font-bold mb-1" style={{ color: "#2A1F14" }}>
+                      Display Name
+                    </label>
+                    <input
+                      type="text"
+                      value={editName}
+                      onChange={(e) => setEditName(e.target.value)}
+                      placeholder="Enter your name"
+                      className="w-full px-4 py-3 rounded-2xl bg-white border border-[#EDE6DE] text-sm focus:outline-none focus:ring-2 focus:ring-[#D95F2B]"
+                      style={{ color: "#2A1F14" }}
+                      required
+                    />
+                  </div>
+
+                  {/* Bio Textarea */}
+                  <div>
+                    <label className="block text-xs font-bold mb-1" style={{ color: "#2A1F14" }}>
+                      Student Bio
+                    </label>
+                    <textarea
+                      value={editBio}
+                      onChange={(e) => setEditBio(e.target.value)}
+                      rows={3}
+                      placeholder="Tell fellow dorm chefs about your favorite meals..."
+                      className="w-full px-4 py-3 rounded-2xl bg-white border border-[#EDE6DE] text-sm focus:outline-none focus:ring-2 focus:ring-[#D95F2B] resize-none"
+                      style={{ color: "#2A1F14" }}
+                    />
+                  </div>
+
                 </div>
 
-                {/* Display Name Input */}
-                <div>
-                  <label className="block text-xs font-bold mb-1" style={{ color: "#2A1F14" }}>
-                    Display Name
-                  </label>
-                  <input
-                    type="text"
-                    value={editName}
-                    onChange={(e) => setEditName(e.target.value)}
-                    placeholder="Enter your name"
-                    className="w-full px-4 py-3 rounded-2xl bg-white border border-[#EDE6DE] text-sm focus:outline-none focus:ring-2 focus:ring-[#D95F2B]"
-                    style={{ color: "#2A1F14" }}
-                    required
-                  />
-                </div>
-
-                {/* Bio Textarea */}
-                <div>
-                  <label className="block text-xs font-bold mb-1" style={{ color: "#2A1F14" }}>
-                    Student Bio
-                  </label>
-                  <textarea
-                    value={editBio}
-                    onChange={(e) => setEditBio(e.target.value)}
-                    rows={3}
-                    placeholder="Tell fellow dorm chefs about your favorite meals..."
-                    className="w-full px-4 py-3 rounded-2xl bg-white border border-[#EDE6DE] text-sm focus:outline-none focus:ring-2 focus:ring-[#D95F2B] resize-none"
-                    style={{ color: "#2A1F14" }}
-                  />
-                </div>
-
-                {/* Submit button */}
-                <div className="pt-2 flex gap-3">
+                {/* Always-visible Sticky Submit Action Buttons */}
+                <div className="pt-3 flex gap-3 flex-shrink-0 border-t border-[#EDE6DE] bg-[#FDF8F2]">
                   <button
                     type="button"
                     onClick={() => setIsEditing(false)}
-                    className="flex-1 py-3.5 rounded-2xl font-bold text-sm bg-gray-200 text-gray-700 active:scale-95 transition-transform"
+                    className="flex-1 py-3.5 rounded-2xl font-bold text-sm bg-[#E5DDD4] text-[#2A1F14] active:scale-95 transition-transform cursor-pointer"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    className="flex-1 py-3.5 rounded-2xl font-bold text-sm text-white shadow-lg active:scale-95 transition-transform"
+                    className="flex-1 py-3.5 rounded-2xl font-bold text-sm text-white shadow-lg active:scale-95 transition-transform cursor-pointer"
                     style={{ background: "linear-gradient(135deg,#D95F2B,#C84E1E)" }}
                   >
                     Save Changes
@@ -302,7 +305,7 @@ export default function ProfileScreen({
         {/* Success Toast */}
         {showToast && (
           <div
-            className="absolute bottom-20 left-6 right-6 px-4 py-3 bg-[#2A1F14] text-white rounded-2xl shadow-xl flex items-center gap-3 z-50 anim-fade-in"
+            className="fixed bottom-20 left-6 right-6 px-4 py-3 bg-[#2A1F14] text-white rounded-2xl shadow-xl flex items-center gap-3 z-50 anim-fade-in"
           >
             <span style={{ fontSize: 20 }}>✅</span>
             <p className="text-xs font-bold">Profile updated successfully!</p>
