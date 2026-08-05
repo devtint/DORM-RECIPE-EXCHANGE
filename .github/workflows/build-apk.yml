@@ -31,7 +31,7 @@ jobs:
       - name: Build Web Assets
         run: npm run build
 
-      - name: Add & Sync Capacitor Android
+      - name: Sync Capacitor Android
         run: |
           npx cap add android || true
           npx cap sync android
@@ -41,9 +41,10 @@ jobs:
           cd android
           chmod +x gradlew
           ./gradlew assembleDebug
+          cp app/build/outputs/apk/debug/app-debug.apk ../DormRecipeExchange.apk
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: DormRecipeExchange-Android-APK
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+          path: DormRecipeExchange.apk

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Dorm Recipe Exchange</string>
+    <string name="title_activity_main">Dorm Recipe Exchange</string>
+    <string name="package_name">com.dormrecipe.app</string>
+    <string name="custom_url_scheme">com.dormrecipe.app</string>
+</resources>
