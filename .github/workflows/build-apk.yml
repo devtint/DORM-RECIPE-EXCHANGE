@@ -25,16 +25,11 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 10
-
-      - name: Install Dependencies
-        run: pnpm install
+      - name: Install npm dependencies
+        run: npm install --legacy-peer-deps
 
       - name: Build Web Assets
-        run: pnpm build
+        run: npm run build
 
       - name: Add & Sync Capacitor Android
         run: |
