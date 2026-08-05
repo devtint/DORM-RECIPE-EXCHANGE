@@ -19,17 +19,29 @@
 
 *, *::before, *::after {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
-body {
+html, body {
   font-family: 'Nunito', sans-serif;
-  background: #FDF8F2;
+  background: #B8AFA8;
   color: #2A1F14;
   margin: 0;
   padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+  -webkit-touch-callout: none;
 }
 
-input:focus {
+input, textarea {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+input:focus, textarea:focus {
   outline: none;
 }
 
@@ -59,69 +71,79 @@ input:focus {
   to   { opacity: 1; transform: translateX(0); }
 }
 
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(100%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 @keyframes scale-in {
   from { opacity: 0; transform: scale(0.92); }
   to   { opacity: 1; transform: scale(1); }
 }
 
-@keyframes pop {
-  0%   { transform: scale(1); }
-  40%  { transform: scale(1.35); }
-  70%  { transform: scale(0.88); }
-  100% { transform: scale(1); }
-}
-
-@keyframes slide-up-sheet {
-  from { transform: translateY(100%); }
-  to   { transform: translateY(0); }
-}
-
-@keyframes shimmer {
-  0%   { background-position: -400px 0; }
-  100% { background-position: 400px 0; }
-}
-
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-6px); }
-}
-
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
 }
 
 @keyframes pulse-ring {
-  0%   { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(217,95,43,0.4); }
-  70%  { transform: scale(1);    box-shadow: 0 0 0 10px rgba(217,95,43,0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0  rgba(217,95,43,0); }
+  0%   { transform: scale(0.95); opacity: 0.8; }
+  50%  { transform: scale(1.05); opacity: 0.4; }
+  100% { transform: scale(0.95); opacity: 0.8; }
 }
 
-@keyframes count-up {
-  from { transform: translateY(6px); opacity: 0; }
-  to   { transform: translateY(0);   opacity: 1; }
+@keyframes bookmark-pop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.35) rotate(-8deg); }
+  100% { transform: scale(1) rotate(0); }
 }
 
-/* ── Animation utility classes ──────────────────────────────────────────── */
+/* ── Utility Classes ────────────────────────────────────────────────────── */
 
-.anim-fade-in       { animation: fade-in       0.3s ease both; }
-.anim-fade-up       { animation: fade-up       0.4s cubic-bezier(0.22,1,0.36,1) both; }
-.anim-fade-down     { animation: fade-down     0.3s ease both; }
-.anim-slide-right   { animation: slide-in-right 0.35s cubic-bezier(0.22,1,0.36,1) both; }
-.anim-scale-in      { animation: scale-in      0.28s cubic-bezier(0.22,1,0.36,1) both; }
-.anim-float         { animation: float         3s ease-in-out infinite; }
-.anim-pulse-ring    { animation: pulse-ring    2s ease-in-out infinite; }
+.anim-fade-in  { animation: fade-in 0.25s ease-out both; }
+.anim-fade-up  { animation: fade-up 0.3s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.anim-slide-up { animation: slide-up 0.35s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.anim-scale-in { animation: scale-in 0.25s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.anim-float    { animation: float 3s ease-in-out infinite; }
+.anim-pop      { animation: bookmark-pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) both; }
 
-/* Stagger helpers — add delay via --delay CSS var or inline style */
-.anim-stagger > * { animation: fade-up 0.4s cubic-bezier(0.22,1,0.36,1) both; }
-.anim-stagger > *:nth-child(1) { animation-delay: 0ms; }
-.anim-stagger > *:nth-child(2) { animation-delay: 60ms; }
-.anim-stagger > *:nth-child(3) { animation-delay: 120ms; }
-.anim-stagger > *:nth-child(4) { animation-delay: 180ms; }
-.anim-stagger > *:nth-child(5) { animation-delay: 240ms; }
-.anim-stagger > *:nth-child(6) { animation-delay: 300ms; }
-.anim-stagger > *:nth-child(7) { animation-delay: 360ms; }
-.anim-stagger > *:nth-child(8) { animation-delay: 420ms; }
+/* ── Custom Range Input Styling ─────────────────────────────────────────── */
 
-/* Bookmark pop — toggled via JS by adding this class */
-.bookmark-pop { animation: pop 0.35s cubic-bezier(0.22,1,0.36,1) both; }
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type='range']::-webkit-slider-track {
+  background: #E5DDD4;
+  height: 6px;
+  border-radius: 3px;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #D95F2B;
+  box-shadow: 0 2px 6px rgba(217, 95, 43, 0.4);
+  margin-top: -8px;
+}
+
+input[type='range']::-moz-range-track {
+  background: #E5DDD4;
+  height: 6px;
+  border-radius: 3px;
+}
+
+input[type='range']::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #D95F2B;
+  box-shadow: 0 2px 6px rgba(217, 95, 43, 0.4);
+  border: none;
+}
