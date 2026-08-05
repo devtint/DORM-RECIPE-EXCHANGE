@@ -1,26 +1,19 @@
 /**
- * Shell — mobile viewport wrapper.
- * Constrains to 390px, centers on desktop with mobile shell frame, handles safe-area insets.
+ * Shell — Full-Bleed Mobile Viewport Wrapper.
+ * Fills 100% of the device screen seamlessly without bezels or outer margins.
  * Every screen renders inside this.
  */
 export default function Shell({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className="flex justify-center items-center select-none"
-      style={{ background: "#1E1A17", minHeight: "100dvh", width: "100%" }}
+      className="w-full h-full min-h-[100dvh] flex flex-col relative overflow-hidden select-none"
+      style={{
+        background: "#FDF8F2",
+        paddingTop: "env(safe-area-inset-top)",
+        paddingBottom: "env(safe-area-inset-bottom)",
+      }}
     >
-      <div
-        className="w-full max-w-[390px] flex flex-col relative overflow-hidden shadow-2xl sm:rounded-[36px] sm:my-4 sm:border-[8px] sm:border-[#2A2420]"
-        style={{
-          height: "100dvh",
-          maxHeight: "844px",
-          background: "#FDF8F2",
-          paddingTop: "env(safe-area-inset-top)",
-          paddingBottom: "env(safe-area-inset-bottom)",
-        }}
-      >
-        {children}
-      </div>
+      {children}
     </div>
   );
 }
