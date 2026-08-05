@@ -6,9 +6,8 @@
 export default function Shell({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className="w-full h-full min-h-[100dvh] flex flex-col relative overflow-hidden select-none"
+      className="w-full min-h-[100dvh] h-[100dvh] flex flex-col relative overflow-hidden select-none bg-[#FDF8F2]"
       style={{
-        background: "#FDF8F2",
         paddingTop: "env(safe-area-inset-top)",
         paddingBottom: "env(safe-area-inset-bottom)",
       }}

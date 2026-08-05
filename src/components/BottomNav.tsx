@@ -58,12 +58,13 @@ interface BottomNavProps {
 export default function BottomNav({ active, onNav }: BottomNavProps) {
   return (
     <nav
-      className="flex items-center flex-shrink-0"
+      className="flex items-center flex-shrink-0 z-50"
       style={{
         borderTop: "1px solid #EDE6DE",
-        background: "rgba(253,248,242,0.96)",
-        backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)",
+        background: "rgba(253,248,242,0.98)",
+        backdropFilter: "blur(14px)",
+        WebkitBackdropFilter: "blur(14px)",
+        paddingBottom: "max(12px, env(safe-area-inset-bottom))",
       }}
     >
       {TABS.map((t) => {
@@ -72,7 +73,7 @@ export default function BottomNav({ active, onNav }: BottomNavProps) {
           <button
             key={t.id}
             onClick={() => onNav(t.id)}
-            className="flex-1 flex flex-col items-center gap-0.5 py-2 relative"
+            className="flex-1 flex flex-col items-center gap-0.5 py-2 relative cursor-pointer active:scale-95 transition-transform"
             style={{ minHeight: 56 }}
           >
             {/* Active pill indicator */}
