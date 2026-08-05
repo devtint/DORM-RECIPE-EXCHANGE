@@ -30,13 +30,15 @@ jobs:
           npx cap add ios || true
           npx cap sync ios
 
-      - name: Build iOS Xcode App (Simulator)
+      - name: Build iOS Xcode App (Simulator / Universal)
         run: |
           xcodebuild -project ios/App/App.xcodeproj \
                      -scheme App \
                      -configuration Release \
                      -sdk iphonesimulator \
                      -derivedDataPath ios/build \
+                     CODE_SIGNING_ALLOWED=NO \
+                     CODE_SIGNING_REQUIRED=NO \
                      build
 
       - name: Zip iOS Xcode Build
