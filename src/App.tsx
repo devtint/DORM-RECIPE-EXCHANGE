@@ -228,7 +228,11 @@ export default function App() {
             return (
               <SignUpScreen
                 email={email}
+                userName={userName}
+                userAvatar={userAvatar}
                 onEmailChange={setEmail}
+                onNameChange={setUserName}
+                onAvatarChange={setUserAvatar}
                 onContinue={() => push("otp")}
                 onLogin={() => { pop(); }}
                 onBack={pop}
