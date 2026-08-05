@@ -1,0 +1,18 @@
+{
+  "name": "Dorm Recipe Exchange",
+  "short_name": "DormRecipe",
+  "description": "A mobile-first peer-to-peer culinary platform for university students operating under dorm appliance restrictions and micro-budgets (THB 40-1000).",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FDF8F2",
+  "theme_color": "#D95F2B",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
